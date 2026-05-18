@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!--
+  FASAL - Farmer Portal
+  Single-page mobile-first UI for farmers.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#388E3C">
+  <title>FASAL - Farmer Portal</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/farmer.css">
+</head>
+<body>
+  <div id="app-container">
+
+    <!-- ONBOARDING -->
+    <section id="screen-onboarding" class="screen">
+      <header class="onboarding-header">
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <div class="step-indicator">
+          <span class="step-num active" data-step="1">1</span>
+          <span class="step-num" data-step="2">2</span>
+          <span class="step-num" data-step="3">3</span>
+          <span class="step-num" data-step="4">4</span>
+          <span class="step-num" data-step="5">5</span>
+        </div>
+      </header>
+
+      <div id="step-1" class="step">
+        <div class="welcome-content">
+          <div class="logo-circle"><span class="logo-glyph">🌾</span></div>
+          <h1 class="brand">FASAL</h1>
+          <p class="tagline-en">Your Market, Direct</p>
+          <p class="tagline-hi">आपका बाज़ार, सीधा</p>
+          <button id="btn-onboard-start" class="btn btn-primary btn-full mt-4">Get Started</button>
+          <p class="signin-link text-secondary mt-3">
+            Already have an account?
+            <a id="link-show-login" href="#">Sign in</a>
+          </p>
+        </div>
+      </div>
+
+      <div id="step-2" class="step" hidden>
+        <div class="step-content">
+          <h2>Tell us about yourself</h2>
+          <p class="text-secondary mb-4">We'll use this to set up your account.</p>
+          <label class="form-label" for="input-name">Full Name</label>
+          <input id="input-name" type="text" class="form-input" placeholder="e.g. Ravi Kumar" autocomplete="name">
+          <label class="form-label mt-3" for="input-phone">Phone Number</label>
+          <input id="input-phone" type="tel" class="form-input" placeholder="10-digit phone" autocomplete="tel" maxlength="10" inputmode="numeric">
+          <p id="error-step-2" class="error-message" hidden></p>
+          <div class="step-actions">
+            <button id="btn-onboard-step2-back" class="btn btn-secondary">Back</button>
+            <button id="btn-onboard-step2-next" class="btn btn-primary">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="step-3" class="step" hidden>
+        <div class="step-content">
+          <h2>Create a password</h2>
+          <p class="text-secondary mb-4">Pick something you'll remember.</p>
+          <label class="form-label" for="input-password">Password</label>
+          <input id="input-password" type="password" class="form-input" placeholder="At least 6 characters" autocomplete="new-password">
+          <label class="form-label mt-3" for="input-password-confirm">Confirm Password</label>
+          <input id="input-password-confirm" type="password" class="form-input" placeholder="Type it again" autocomplete="new-password">
+          <p id="error-step-3" class="error-message" hidden></p>
+          <div class="step-actions">
+            <button id="btn-onboard-step3-back" class="btn btn-secondary">Back</button>
+            <button id="btn-onboard-step3-next" class="btn btn-primary">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="step-4" class="step" hidden>
+        <div class="step-content">
+          <h2>Where are you based?</h2>
+          <p class="text-secondary mb-4">Pick the village or town closest to your farm.</p>
+          <label class="form-label" for="select-spoke">Village / Spoke</label>
+          <select id="select-spoke" class="form-input">
+            <option value="">Loading villages…</option>
+          </select>
+          <p id="error-step-4" class="error-message" hidden></p>
+          <div class="step-actions">
+            <button id="btn-onboard-step4-back" class="btn btn-secondary">Back</button>
+            <button id="btn-onboard-step4-next" class="btn btn-primary">Create Account</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="step-5" class="step" hidden>
+        <div class="success-content">
+          <div id="step-5-loading">
+            <div class="spinner"></div>
+            <p class="mt-3 text-secondary">Creating your account…</p>
+          </div>
+          <div id="step-5-success" hidden>
+            <div class="tick-icon">✓</div>
+            <h2 id="welcome-message">Welcome to FASAL!</h2>
+            <p class="text-secondary mt-2">Your account is ready.</p>
+            <button id="btn-onboard-step5-dashboard" class="btn btn-primary btn-full mt-4">Go to Dashboard</button>
+          </div>
+          <div id="step-5-error" hidden>
+            <div class="error-icon">⚠</div>
+            <h2>Something went wrong</h2>
+            <p id="step-5-error-message" class="text-secondary mt-2"></p>
+            <button id="btn-step-5-retry" class="btn btn-primary btn-full mt-4">Try Again</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGIN -->
+    <section id="screen-login" class="screen" hidden>
+      <div class="step-content login-content">
+        <div class="logo-circle small"><span class="logo-glyph">🌾</span></div>
+        <h1 class="brand">FASAL</h1>
+        <p class="text-secondary text-center mb-4">Sign in to continue</p>
+        <label class="form-label" for="input-login-phone">Phone Number</label>
+        <input id="input-login-phone" type="tel" class="form-input" placeholder="10-digit phone" maxlength="10" inputmode="numeric">
+        <label class="form-label mt-3" for="input-login-password">Password</label>
+        <input id="input-login-password" type="password" class="form-input" placeholder="Your password">
+        <p id="error-login" class="error-message" hidden></p>
+        <button id="btn-login-submit" class="btn btn-primary btn-full mt-4">Sign In</button>
+        <p class="signin-link text-secondary mt-3">
+          New to FASAL?
+          <a id="link-show-onboarding" href="#">Create an account</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- MAIN APP -->
+    <section id="screen-main" class="screen" hidden>
+      <header class="app-header">
+        <div>
+          <p class="header-greeting">Hello,</p>
+          <h2 id="header-name">Farmer</h2>
+          <p id="header-spoke" class="text-small text-secondary"></p>
+        </div>
+        <button id="btn-logout" class="icon-btn" title="Sign out" aria-label="Sign out">⏻</button>
+      </header>
+
+      <main class="app-main">
+        <div id="tab-dashboard" class="tab-panel">
+          <h3 class="section-title">My Listings</h3>
+          <div id="dashboard-summary" class="summary-row"></div>
+          <div id="dashboard-listings"></div>
+        </div>
+
+        <div id="tab-mandi" class="tab-panel" hidden>
+          <div class="card mandi-form">
+            <h3 class="mb-3">List New Produce</h3>
+            <label class="form-label" for="select-produce-type">Produce Type</label>
+            <select id="select-produce-type" class="form-input">
+              <option value="">Loading…</option>
+            </select>
+            <label class="form-label mt-3" for="input-quantity">Quantity (kg)</label>
+            <input id="input-quantity" type="number" class="form-input" placeholder="e.g. 50" min="0" step="0.1" inputmode="decimal">
+            <label class="form-label mt-3" for="input-harvest-date">Harvest Date</label>
+            <input id="input-harvest-date" type="date" class="form-input">
+            <button id="btn-submit-listing" class="btn btn-primary btn-full mt-4">Add Listing</button>
+          </div>
+          <h3 class="section-title mt-4">My Mandi</h3>
+          <p class="text-secondary text-small mb-3">Listings visible at your hub</p>
+          <div id="mandi-listings"></div>
+        </div>
+
+        <div id="tab-contracts" class="tab-panel" hidden>
+          <div class="coming-soon card">
+            <div class="lock-icon">🔒</div>
+            <h2>Contracts</h2>
+            <p class="text-secondary mt-2">Coming soon</p>
+            <p class="text-small text-secondary mt-3">Direct buyer contracts and pricing agreements will appear here.</p>
+          </div>
+        </div>
+
+        <div id="tab-messages" class="tab-panel" hidden>
+          <div class="coming-soon card">
+            <div class="lock-icon">🔒</div>
+            <h2>Messages</h2>
+            <p class="text-secondary mt-2">Coming soon</p>
+            <p class="text-small text-secondary mt-3">Chat with your hub and buyers will appear here.</p>
+          </div>
+        </div>
+      </main>
+
+      <nav id="bottom-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-tab="dashboard" aria-label="Home">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item" data-tab="mandi" aria-label="Mandi">
+          <span class="nav-icon">🛒</span>
+          <span class="nav-label">Mandi</span>
+        </button>
+        <button class="nav-item" data-tab="contracts" aria-label="Contracts">
+          <span class="nav-icon">📄</span>
+          <span class="nav-label">Contracts</span>
+        </button>
+        <button class="nav-item" data-tab="messages" aria-label="Messages">
+          <span class="nav-icon">💬</span>
+          <span class="nav-label">Messages</span>
+        </button>
+      </nav>
+    </section>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/farmer.js"></script>
+</body>
+</html>

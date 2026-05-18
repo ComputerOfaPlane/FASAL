@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!-- FASAL - Hub Admin Panel -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#388E3C">
+  <title>FASAL - Hub Admin</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/hub-admin.css">
+</head>
+<body>
+
+  <section id="screen-login" class="screen">
+    <div class="login-card card">
+      <div class="logo-circle">🌾</div>
+      <h1 class="brand">FASAL</h1>
+      <p class="text-secondary text-center mb-4">Hub Admin Sign In</p>
+      <label class="form-label" for="input-phone">Phone Number</label>
+      <input id="input-phone" type="tel" class="form-input" placeholder="10-digit phone" maxlength="10" inputmode="numeric">
+      <label class="form-label mt-3" for="input-password">Password</label>
+      <input id="input-password" type="password" class="form-input" placeholder="Your password">
+      <p id="error-login" class="error-message" hidden></p>
+      <button id="btn-login" class="btn btn-primary btn-full mt-4">Sign In</button>
+      <p class="text-small text-secondary text-center mt-3">
+        Hub Admins only. Farmers should use the Farmer Portal.
+      </p>
+    </div>
+  </section>
+
+  <section id="screen-main" class="screen" hidden>
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-mini">🌾 FASAL</div>
+        <p id="sidebar-hub-name" class="text-small text-secondary mt-1"></p>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="side-item active" data-section="overview"><span class="side-icon">📊</span><span class="side-label">Overview</span></button>
+        <button class="side-item" data-section="inventory"><span class="side-icon">📦</span><span class="side-label">Inventory</span></button>
+        <button class="side-item" data-section="demand"><span class="side-icon">🛒</span><span class="side-label">Demand</span></button>
+        <button class="side-item" data-section="surplus"><span class="side-icon">⚖️</span><span class="side-label">Surplus</span></button>
+        <button class="side-item" data-section="vehicles"><span class="side-icon">🚛</span><span class="side-label">Vehicles</span></button>
+        <button class="side-item side-item-cta" data-section="algorithm"><span class="side-icon">⚡</span><span class="side-label">Run Algorithm</span></button>
+      </nav>
+      <button id="btn-logout" class="btn btn-secondary sidebar-logout">Sign out</button>
+    </aside>
+
+    <main id="main-content">
+      <header class="content-header">
+        <h1 id="hub-name">Hub</h1>
+        <p id="hub-city" class="text-secondary"></p>
+      </header>
+
+      <section id="section-overview" class="content-section">
+        <h2 class="section-heading">Overview</h2>
+        <p class="text-secondary mb-3">Key numbers for this hub right now.</p>
+        <div id="overview-stats" class="stats-row"></div>
+      </section>
+
+      <section id="section-inventory" class="content-section" hidden>
+        <h2 class="section-heading">Inventory</h2>
+        <p class="text-secondary mb-3">Current stock - most at-risk shown first.</p>
+        <div id="inventory-table-wrap" class="table-wrap"></div>
+      </section>
+
+      <section id="section-demand" class="content-section" hidden>
+        <h2 class="section-heading">Demand</h2>
+        <p class="text-secondary mb-3">Produce this hub wants to receive.</p>
+        <div id="demand-table-wrap" class="table-wrap"></div>
+      </section>
+
+      <section id="section-surplus" class="content-section" hidden>
+        <h2 class="section-heading">Surplus / Shortage</h2>
+        <p class="text-secondary mb-3">Inventory minus local demand for each produce type.</p>
+        <div id="surplus-table-wrap" class="table-wrap"></div>
+      </section>
+
+      <section id="section-vehicles" class="content-section" hidden>
+        <h2 class="section-heading">Vehicles</h2>
+        <p class="text-secondary mb-3">Trucks based at this hub.</p>
+        <div id="vehicles-list"></div>
+      </section>
+
+      <section id="section-algorithm" class="content-section" hidden>
+        <h2 class="section-heading">Run Routing Algorithm</h2>
+        <div class="algorithm-intro card">
+          <p class="text-large">
+            The routing engine looks at what your hub has too much of, finds other
+            hubs that need it, and plans the best delivery route - taking freshness
+            decay into account.
+          </p>
+          <p class="text-small text-secondary mt-2">
+            One click runs all seven steps: surplus, match, prioritise, plan,
+            cold-storage check, save, and summarise.
+          </p>
+          <button id="btn-run-algorithm" class="btn btn-primary btn-large mt-3">
+            <span class="btn-icon">⚡</span> Run Algorithm Now
+          </button>
+        </div>
+        <div id="algorithm-result"></div>
+      </section>
+    </main>
+
+    <nav id="bottom-nav-mobile">
+      <button class="bnav-item active" data-section="overview"><span class="bnav-icon">📊</span><span class="bnav-label">Overview</span></button>
+      <button class="bnav-item" data-section="inventory"><span class="bnav-icon">📦</span><span class="bnav-label">Inv</span></button>
+      <button class="bnav-item" data-section="demand"><span class="bnav-icon">🛒</span><span class="bnav-label">Demand</span></button>
+      <button class="bnav-item" data-section="surplus"><span class="bnav-icon">⚖️</span><span class="bnav-label">Surplus</span></button>
+      <button class="bnav-item" data-section="vehicles"><span class="bnav-icon">🚛</span><span class="bnav-label">Veh</span></button>
+      <button class="bnav-item bnav-cta" data-section="algorithm"><span class="bnav-icon">⚡</span><span class="bnav-label">Run</span></button>
+    </nav>
+  </section>
+
+  <script src="js/api.js"></script>
+  <script src="js/hub-admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!-- FASAL - National Operations Console -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#388E3C">
+  <title>FASAL - National Demo</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/super-admin.css">
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <section id="screen-login" class="screen">
+    <div class="login-card card">
+      <div class="logo-circle">🌾</div>
+      <h1 class="brand">FASAL</h1>
+      <p class="text-secondary text-center mb-4">National Operations Console</p>
+      <label class="form-label" for="input-phone">Phone Number</label>
+      <input id="input-phone" type="tel" class="form-input" placeholder="10-digit phone" maxlength="10" inputmode="numeric">
+      <label class="form-label mt-3" for="input-password">Password</label>
+      <input id="input-password" type="password" class="form-input" placeholder="Your password">
+      <p id="error-login" class="error-message" hidden></p>
+      <button id="btn-login" class="btn btn-primary btn-full mt-4">Sign In</button>
+      <p class="text-small text-secondary text-center mt-3">Super Admins only.</p>
+    </div>
+  </section>
+
+  <section id="screen-main" class="screen" hidden>
+    <header id="stats-bar">
+      <div class="stats-brand">
+        <span class="brand-icon">🌾</span>
+        <span class="brand-text">FASAL Console</span>
+      </div>
+      <div class="stats-chips">
+        <div class="stat-chip">
+          <div class="chip-value" id="stat-listings">—</div>
+          <div class="chip-label">Total Listings</div>
+        </div>
+        <div class="stat-chip">
+          <div class="chip-value" id="stat-hubs">—</div>
+          <div class="chip-label">Hubs Online</div>
+        </div>
+        <div class="stat-chip">
+          <div class="chip-value" id="stat-transit">—</div>
+          <div class="chip-label">In Transit</div>
+        </div>
+        <div class="stat-chip">
+          <div class="chip-value" id="stat-routes">—</div>
+          <div class="chip-label">Active Routes</div>
+        </div>
+      </div>
+      <button id="btn-logout" class="icon-btn" title="Sign out" aria-label="Sign out">⏻</button>
+    </header>
+
+    <div class="toggle-row">
+      <button class="toggle-btn active" data-toggle="hubs"><span>🏬</span> Hubs</button>
+      <button class="toggle-btn" data-toggle="spokes"><span>📍</span> Spokes</button>
+      <button class="toggle-btn active" data-toggle="vehicles"><span>🚛</span> Vehicles</button>
+      <button class="toggle-btn active" data-toggle="routes"><span>🛣️</span> Routes</button>
+      <button class="toggle-btn toggle-btn-clear" id="btn-clear-map"><span>✕</span> Clear All</button>
+    </div>
+
+    <div id="map-container">
+      <div id="map"></div>
+    </div>
+
+    <div class="panel-row">
+      <div class="panel card">
+        <h3 class="panel-title">Freshness Decay Curve</h3>
+        <p class="text-small text-secondary mb-3">
+          Q(t) = e<sup>-λt</sup>. Cold storage slows decay to about 30% of the normal rate.
+        </p>
+        <label class="form-label" for="select-produce">Produce</label>
+        <select id="select-produce" class="form-input mb-3">
+          <option value="">Loading…</option>
+        </select>
+        <div class="chart-container">
+          <canvas id="quality-chart"></canvas>
+        </div>
+      </div>
+
+      <div class="panel card">
+        <h3 class="panel-title">Step-Through Algorithm Demo</h3>
+        <p class="text-small text-secondary mb-3">
+          Watch the routing engine deliver live on the map above.
+        </p>
+        <label class="form-label" for="select-hub">Source Hub</label>
+        <select id="select-hub" class="form-input mb-3">
+          <option value="">Loading…</option>
+        </select>
+        <button id="btn-run-demo" class="btn btn-primary btn-full">▶ Run Algorithm for Selected Hub</button>
+        <div id="demo-result" class="mt-3"></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/api.js"></script>
+  <script src="js/super-admin.js"></script>
+</body>
+</html>
