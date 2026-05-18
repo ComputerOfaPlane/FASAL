@@ -309,7 +309,3 @@ FASAL/
 ```
 
 ---
-
-## License
-
-This is a demonstration project. Use, fork, and adapt freely.
