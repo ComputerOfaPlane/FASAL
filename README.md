@@ -69,14 +69,10 @@ A clean machine with the prerequisites installed should be running FASAL in unde
    - create `fasal_db`, load the schema, load the seed data
    - patch `DatabaseConnection.java` with your credentials
    - compile and start the backend on `http://localhost:4567`
+   - The frontend pages will be served on the same port on localhost as backend
 
-6. **Open the frontend pages in your browser** (just double-click them — no web server needed):
 
-   - `frontend-web/farmer.html` — Farmer Portal
-   - `frontend-web/hub-admin.html` — Hub Admin Panel
-   - `frontend-web/super-admin.html` — National Operations Console
-
-7. **Sign in** with one of the demo accounts below and explore.
+6. **Sign in** with one of the demo accounts below and explore.
 
 ---
 
